@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../pages/about.dart';
+import '../pages/contact.dart';
+import '../pages/gallery.dart';
+import '../pages/home.dart';
+import '../pages/projects.dart';
+
 class VerticalCarousel extends StatefulWidget {
   final double height;
   final double width;
@@ -39,6 +45,15 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
       'image': 'images/5.jpg',
     },
   ];
+
+  final pages = [
+  HomeView(),
+  AboutView(),
+  GalleryView(),
+  ProjectsView(),
+  ContactView(),
+];
+
 
   @override
   void initState() {
@@ -103,16 +118,7 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
                                 : BoxFit.fitWidth,
                           ),
                         ),
-                        child: Center(
-                          child: Text(
-                            _content[index]['title']!,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
+                        child: _getPage(index),
                       ),
                     ),
                   ),
@@ -123,5 +129,22 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
         },
       ),
     );
+  }
+}
+
+Widget _getPage(int index) {
+  switch (index) {
+    case 0:
+      return HomeView();
+    case 1:
+      return AboutView();
+    case 2:
+      return GalleryView();
+    case 3:
+      return ProjectsView();
+    case 4:
+      return ContactView();
+    default:
+      return HomeView();
   }
 }

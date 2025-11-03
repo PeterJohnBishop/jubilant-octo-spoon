@@ -13,11 +13,11 @@ class _NavRowState extends State<NavRow> {
   int _activeIndex = 0;
 
   final List<String> labels = [
-    'Home',
-    'About',
-    'Projects',
-    'Gallery',
-    'Contact',
+    'home',
+    'about',
+    'projects',
+    'gallery',
+    'contact',
   ];
 
   @override
@@ -35,15 +35,25 @@ class _NavRowState extends State<NavRow> {
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: List.generate(labels.length, (index) {
-          return NavButton(
-            label: labels[index],
-            isActive: _activeIndex == index,
-            onTap: () => setState(() => _activeIndex = index),
-          );
-        }),
-      ),
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text( 'peter.bishop / software.engineer',
+              style: TextStyle(
+                color: Colors.grey,
+                fontSize: 20,
+                fontWeight: FontWeight.w100,
+              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: List.generate(labels.length, (index) {
+              return NavButton(
+                label: labels[index],
+                isActive: _activeIndex == index,
+                onTap: () => setState(() => _activeIndex = index),
+              );
+            }),
+          ),
+        ],)
     );
   }
 }
