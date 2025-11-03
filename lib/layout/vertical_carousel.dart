@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../pages/about.dart';
 import '../pages/contact.dart';
 import '../pages/gallery.dart';
@@ -9,11 +8,13 @@ import '../pages/projects.dart';
 class VerticalCarousel extends StatefulWidget {
   final double height;
   final double width;
+  final PageController controller;
 
   const VerticalCarousel({
     super.key,
     required this.height,
     required this.width,
+    required this.controller,
   });
 
   @override
@@ -24,47 +25,17 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
   late final PageController _pageController;
 
   final List<Map<String, String>> _content = [
-    {
-      'title': 'Page 1',
-      'image': 'images/1.jpg',
-    },
-    {
-      'title': 'Page 2',
-      'image': 'images/2.jpg',
-    },
-    {
-      'title': 'Page 3',
-      'image': 'images/3.jpg',
-    },
-    {
-      'title': 'Page 4',
-      'image': 'images/4.jpg',
-    },
-    {
-      'title': 'Page 5',
-      'image': 'images/5.jpg',
-    },
+    {'title': 'Page 1', 'image': 'images/1.jpg'},
+    {'title': 'Page 2', 'image': 'images/2.jpg'},
+    {'title': 'Page 3', 'image': 'images/3.jpg'},
+    {'title': 'Page 4', 'image': 'images/4.jpg'},
+    {'title': 'Page 5', 'image': 'images/5.jpg'},
   ];
-
-  final pages = [
-  HomeView(),
-  AboutView(),
-  GalleryView(),
-  ProjectsView(),
-  ContactView(),
-];
-
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController();
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
+    _pageController = widget.controller;
   }
 
   @override

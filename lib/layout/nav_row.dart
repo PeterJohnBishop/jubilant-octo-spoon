@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
-
 import 'nav_button.dart';
 
-class NavRow extends StatefulWidget {
+class NavRow extends StatelessWidget {
   final double height;
   final double width;
-  const NavRow({super.key,
+  final Function(int) onItemSelected;
+  final int currentIndex;
+
+  const NavRow({
+    super.key,
     required this.height,
     required this.width,
+    required this.onItemSelected,
+    required this.currentIndex,
   });
 
-  @override
-  State<NavRow> createState() => _NavRowState();
-}
-
-class _NavRowState extends State<NavRow> {
-  int _activeIndex = 0;
-
-  final List<String> labels = [
+  final List<String> labels = const [
     'home',
     'about',
     'projects',
@@ -27,8 +25,6 @@ class _NavRowState extends State<NavRow> {
 
   @override
   Widget build(BuildContext context) {
-     final height = widget.height;
-    final width = widget.width;
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       decoration: BoxDecoration(
@@ -41,47 +37,52 @@ class _NavRowState extends State<NavRow> {
           ),
         ],
       ),
-      child: height > width ?
-      Column(
-        children: [
-          Text( 'peter.bishop / software.engineer',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 20,
-                fontWeight: FontWeight.w100,
-              )),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(labels.length, (index) {
-              return NavButton(
-                label: labels[index],
-                isActive: _activeIndex == index,
-                onTap: () => setState(() => _activeIndex = index),
-              );
-            }),
-          ),
-        ],
-      )
-      : Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text( 'peter.bishop / software.engineer',
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 20,
-                fontWeight: FontWeight.w100,
-              )),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: List.generate(labels.length, (index) {
-              return NavButton(
-                label: labels[index],
-                isActive: _activeIndex == index,
-                onTap: () => setState(() => _activeIndex = index),
-              );
-            }),
-          ),
-        ],)
+      child: height > width
+          ? Column(
+              children: [
+                const Text(
+                  'peter.bishop / software.engineer',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w100,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(labels.length, (index) {
+                    return NavButton(
+                      label: labels[index],
+                      isActive: currentIndex == index,
+                      onTap: () => onItemSelected(index),
+                    );
+                  }),
+                ),
+              ],
+            )
+          : Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'peter.bishop / software.engineer',
+                  style: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w100,
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: List.generate(labels.length, (index) {
+                    return NavButton(
+                      label: labels[index],
+                      isActive: currentIndex == index,
+                      onTap: () => onItemSelected(index),
+                    );
+                  }),
+                ),
+              ],
+            ),
     );
   }
 }
