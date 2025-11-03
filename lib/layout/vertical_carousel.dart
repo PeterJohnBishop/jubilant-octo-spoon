@@ -84,15 +84,18 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
                           ],
                           image: DecorationImage(
                             image: AssetImage(_content[index]['image'] as String),
-                            fit: height > width
-                                ? BoxFit.fitHeight
-                                : BoxFit.fitWidth,
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        child: _getPage(index),
+                        child: ConstrainedBox(
+    constraints: const BoxConstraints(
+      maxWidth: 700, // limit the form width
+    ),
+    child: _getPage(index),
                       ),
                     ),
                   ),
+                ),
                 ),
               );
             },
