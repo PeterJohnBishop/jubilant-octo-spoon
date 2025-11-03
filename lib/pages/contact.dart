@@ -13,9 +13,9 @@ class _ContactViewState extends State<ContactView> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
-        Icon(Icons.email),
+        Icon(Icons.email, color: Colors.white,),
         SizedBox(width: 8),
-        Text('peterjbishop.denver@gmail.com'),
+        Text('peterjbishop.denver@gmail.com', style: TextStyle(color: Colors.white),),
       ],
     );
   }

@@ -13,9 +13,11 @@ class _AboutViewState extends State<AboutView> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: const [
-        Icon(Icons.person),
+        Icon(Icons.person, color: Colors.white,),
         SizedBox(width: 8),
-        Text('About Page Under Construction'),
+        Text('About Page Under Construction', style: TextStyle(
+          color: Colors.white
+        ),),
       ],
     );
   }

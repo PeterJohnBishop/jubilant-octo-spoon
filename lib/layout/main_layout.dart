@@ -29,7 +29,7 @@ class _MainLayoutState extends State<MainLayout> {
                   top: 0, // sticks to the top
                   left: 0,
                   right: 0,
-                  child: NavRow(),
+                  child: NavRow(height: height, width: width,),
                 ),
               ],
             ),
