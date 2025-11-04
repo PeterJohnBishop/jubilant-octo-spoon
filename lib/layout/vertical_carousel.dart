@@ -57,10 +57,11 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
               double value = 1.0;
 
               if (_pageController.position.haveDimensions) {
-                value = ((_pageController.page ??
-                            _pageController.initialPage.toDouble()) -
-                        index)
-                    .toDouble();
+                value =
+                    ((_pageController.page ??
+                                _pageController.initialPage.toDouble()) -
+                            index)
+                        .toDouble();
                 value = (1 - (value.abs() * 0.8)).clamp(0.0, 1.0).toDouble();
               }
 
@@ -83,19 +84,21 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
                             ),
                           ],
                           image: DecorationImage(
-                            image: AssetImage(_content[index]['image'] as String),
+                            image: AssetImage(
+                              _content[index]['image'] as String,
+                            ),
                             fit: BoxFit.cover,
                           ),
                         ),
                         child: ConstrainedBox(
-    constraints: const BoxConstraints(
-      maxWidth: 700, // limit the form width
-    ),
-    child: _getPage(index),
+                          constraints: const BoxConstraints(
+                            maxWidth: 700, // limit the form width
+                          ),
+                          child: _getPage(index),
+                        ),
                       ),
                     ),
                   ),
-                ),
                 ),
               );
             },
