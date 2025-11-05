@@ -94,7 +94,7 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
                           constraints: const BoxConstraints(
                             maxWidth: 700, // limit the form width
                           ),
-                          child: _getPage(index),
+                          child: _getPage(index, height, width),
                         ),
                       ),
                     ),
@@ -109,16 +109,16 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
   }
 }
 
-Widget _getPage(int index) {
+Widget _getPage(int index, double height, double width) {
   switch (index) {
     case 0:
       return HomeView();
     case 1:
       return AboutView();
     case 2:
-      return GalleryView();
+      return GalleryCarousel(height: height, width: width);
     case 3:
-      return ProjectsView();
+      return ProjectsView(height: height, width: width);
     case 4:
       return ContactView();
     default:
