@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jubilant_octo_spoon/content/image.dart';
+import 'package:jubilant_octo_spoon/forms/email.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +33,25 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    var size = MediaQuery.sizeOf(context);
+    if (size.width < 900) {
+      return const Scaffold(
+        body: Stack(
+          children: [
+            MobileImageWithDropShadowWidget(),
+            EmailForm()
+          ],
+        ),
+      );
+    } else {
+      return const Scaffold(
+        body: Stack(
+          children: [
+            DesktopImageWithDropShadowWidget(),
+            EmailForm()
+          ]
+        ) 
+      );
+    }
   }
 }
