@@ -18,8 +18,8 @@ class NavRow extends StatelessWidget {
   final List<String> labels = const [
     'home',
     'about',
-    'projects',
     'gallery',
+    'projects',
     'contact',
   ];
 

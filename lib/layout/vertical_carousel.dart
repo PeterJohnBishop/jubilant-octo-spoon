@@ -116,7 +116,7 @@ Widget _getPage(int index, double height, double width) {
     case 1:
       return AboutView();
     case 2:
-      return GalleryCarousel(height: height, width: width);
+      return GalleryCarousel();
     case 3:
       return ProjectsView(height: height, width: width);
     case 4:
