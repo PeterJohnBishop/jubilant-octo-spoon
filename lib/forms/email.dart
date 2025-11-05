@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jubilant_octo_spoon/actions/submit-email.dart';
+import 'package:jubilant_octo_spoon/actions/submit.dart';
 
 class ContactView extends StatefulWidget {
   const ContactView({super.key});
@@ -24,10 +26,12 @@ class EmailForm extends StatefulWidget {
 class _EmailFormState extends State<EmailForm> {
   final _nameFocus = FocusNode();
   final _emailFocus = FocusNode();
-  final _phoneFocus = FocusNode();
   final _subjectFocus = FocusNode();
   final _messageFocus = FocusNode();
-  bool _isHovering = false;
+  final _nameTextController = TextEditingController();
+  final _emailTextController = TextEditingController();
+  final _subjectTextController = TextEditingController();
+  final _messageTextController = TextEditingController();
 
   @override
   void initState() {
@@ -35,7 +39,6 @@ class _EmailFormState extends State<EmailForm> {
     for (var node in [
       _nameFocus,
       _emailFocus,
-      _phoneFocus,
       _subjectFocus,
       _messageFocus,
     ]) {
@@ -47,7 +50,6 @@ class _EmailFormState extends State<EmailForm> {
   void dispose() {
     _nameFocus.dispose();
     _emailFocus.dispose();
-    _phoneFocus.dispose();
     _subjectFocus.dispose();
     _messageFocus.dispose();
     super.dispose();
@@ -113,6 +115,7 @@ class _EmailFormState extends State<EmailForm> {
                       decoration: shadow,
                       child: TextField(
                         focusNode: _nameFocus,
+                        controller: _nameTextController,
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
                         decoration: inputDecoration(
@@ -128,6 +131,7 @@ class _EmailFormState extends State<EmailForm> {
                       decoration: shadow,
                       child: TextField(
                         focusNode: _emailFocus,
+                        controller: _emailTextController,
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
                         keyboardType: TextInputType.emailAddress,
@@ -139,27 +143,12 @@ class _EmailFormState extends State<EmailForm> {
                     ),
                     const SizedBox(height: 16),
 
-                    // Phone Field
-                    Container(
-                      decoration: shadow,
-                      child: TextField(
-                        focusNode: _phoneFocus,
-                        cursorColor: Colors.black,
-                        style: const TextStyle(color: Colors.black),
-                        keyboardType: TextInputType.phone,
-                        decoration: inputDecoration(
-                          'Phone',
-                          _phoneFocus.hasFocus,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-
                     // Subject Field
                     Container(
                       decoration: shadow,
                       child: TextField(
                         focusNode: _subjectFocus,
+                        controller: _subjectTextController,
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
                         decoration: inputDecoration(
@@ -175,6 +164,7 @@ class _EmailFormState extends State<EmailForm> {
                       decoration: shadow,
                       child: TextField(
                         focusNode: _messageFocus,
+                        controller: _messageTextController,
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
                         maxLines: 10,
@@ -185,28 +175,11 @@ class _EmailFormState extends State<EmailForm> {
                       ),
                     ),
                     const SizedBox(height: 24),
-
-                    // Submit Button
-                    MouseRegion(
-                      onEnter: (_) => setState(() => _isHovering = true),
-                      onExit: (_) => setState(() => _isHovering = false),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: _isHovering
-                              ? Colors.black
-                              : Colors.grey,
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 14,
-                            horizontal: 32,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        onPressed: () {},
-                        child: Text("Submit"),
-                      ),
+                    SubmitEmailButton(
+                      name: _nameTextController.text,
+                      email: _emailTextController.text,
+                      subject: _subjectTextController.text,
+                      message: _messageTextController.text,
                     ),
                   ],
                 ),
