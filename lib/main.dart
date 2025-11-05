@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/layout/main_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,9 +31,6 @@ class MainView extends StatefulWidget {
 class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.sizeOf(context);
-    var height = size.height;
-    var width = size.width;
-    return MainLayout(height: height, width: width);
+    return Placeholder();
   }
 }
