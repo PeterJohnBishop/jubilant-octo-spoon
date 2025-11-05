@@ -36,12 +36,7 @@ class _EmailFormState extends State<EmailForm> {
   @override
   void initState() {
     super.initState();
-    for (var node in [
-      _nameFocus,
-      _emailFocus,
-      _subjectFocus,
-      _messageFocus,
-    ]) {
+    for (var node in [_nameFocus, _emailFocus, _subjectFocus, _messageFocus]) {
       node.addListener(() => setState(() {}));
     }
   }
@@ -118,10 +113,9 @@ class _EmailFormState extends State<EmailForm> {
                         controller: _nameTextController,
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
-                        decoration: inputDecoration(
-                          'Name',
-                          _nameFocus.hasFocus,
-                        ),
+                        decoration: _nameTextController.text != ""
+                            ? inputDecoration('', _nameFocus.hasFocus)
+                            : inputDecoration('Name', _nameFocus.hasFocus),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -129,16 +123,28 @@ class _EmailFormState extends State<EmailForm> {
                     // Email Field
                     Container(
                       decoration: shadow,
-                      child: TextField(
+                      child: TextFormField(
                         focusNode: _emailFocus,
                         controller: _emailTextController,
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
                         keyboardType: TextInputType.emailAddress,
-                        decoration: inputDecoration(
-                          'Email',
-                          _emailFocus.hasFocus,
-                        ),
+                        decoration: _emailTextController.text != ""
+                            ? inputDecoration('', _emailFocus.hasFocus)
+                            : inputDecoration('Email', _emailFocus.hasFocus),
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          final emailRegex = RegExp(
+                            r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
+                          );
+                          if (!emailRegex.hasMatch(value)) {
+                            return 'Please enter a valid email address';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -151,10 +157,12 @@ class _EmailFormState extends State<EmailForm> {
                         controller: _subjectTextController,
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
-                        decoration: inputDecoration(
-                          'Subject',
-                          _subjectFocus.hasFocus,
-                        ),
+                        decoration: _subjectTextController.text != ''
+                            ? inputDecoration('', _subjectFocus.hasFocus)
+                            : inputDecoration(
+                                'Subject',
+                                _subjectFocus.hasFocus,
+                              ),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -168,10 +176,12 @@ class _EmailFormState extends State<EmailForm> {
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
                         maxLines: 10,
-                        decoration: inputDecoration(
-                          'Message',
-                          _messageFocus.hasFocus,
-                        ),
+                        decoration: _messageTextController.text != ''
+                            ? inputDecoration('', _messageFocus.hasFocus)
+                            : inputDecoration(
+                                'Message',
+                                _messageFocus.hasFocus,
+                              ),
                       ),
                     ),
                     const SizedBox(height: 24),
