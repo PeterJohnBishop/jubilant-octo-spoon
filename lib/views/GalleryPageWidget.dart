@@ -20,9 +20,7 @@ class GalleryPageWidget extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(16),
-          child: isMobile
-              ? _buildMobileList()
-              : _buildDesktopGrid(), 
+          child: isMobile ? _buildMobileList() : _buildDesktopGrid(),
         ),
       ),
     );
@@ -30,8 +28,9 @@ class GalleryPageWidget extends StatelessWidget {
 
   Widget _buildMobileList() {
     return ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      padding: EdgeInsets.zero,
+      physics: const AlwaysScrollableScrollPhysics(),
+      shrinkWrap: false,
       itemCount: imagePaths.length,
       separatorBuilder: (_, __) => const SizedBox(height: 16),
       itemBuilder: (context, index) {
@@ -44,12 +43,12 @@ class GalleryPageWidget extends StatelessWidget {
     return GridView.builder(
       padding: EdgeInsets.zero,
       physics: const AlwaysScrollableScrollPhysics(),
-      shrinkWrap: false, 
+      shrinkWrap: false,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
         mainAxisSpacing: 24,
         crossAxisSpacing: 24,
-        childAspectRatio: 1, 
+        childAspectRatio: 1,
       ),
       itemCount: imagePaths.length,
       itemBuilder: (context, index) {
