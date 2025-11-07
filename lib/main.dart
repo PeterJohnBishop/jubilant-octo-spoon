@@ -4,6 +4,7 @@ import 'package:jubilant_octo_spoon/content/about.dart';
 import 'package:jubilant_octo_spoon/menus/drawer.dart';
 import 'package:jubilant_octo_spoon/menus/sidebar.dart';
 import 'package:jubilant_octo_spoon/views/AboutPageWidget.dart';
+import 'package:jubilant_octo_spoon/views/GalleryPageWidget.dart';
 import 'package:jubilant_octo_spoon/visuals/CircularImageWithDropShadowWidget.dart';
 import 'package:jubilant_octo_spoon/visuals/ImageWithDropShadowWidget.dart';
 import 'package:jubilant_octo_spoon/forms/email.dart';
@@ -37,6 +38,17 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
+  final List<String> galleryImages = [
+    "images/apiResp.gif",
+    "images/geminiChat.gif",
+    "images/kubeBalance.gif",
+    "images/weatherNotif.gif",
+    "images/weather.gif",
+    "images/train1.gif",
+    "images/nightclub.gif",
+    "images/combo.gif",
+  ];
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
@@ -57,10 +69,11 @@ class _MainViewState extends State<MainView> {
             },
           ),
         ),
-        drawer: StandardDrawer(),
+        drawer: MobileDrawer(),
         body: Stack(
           children: [
-            MobileAboutPageWidget()
+            //MobileAboutPageWidget()
+            GalleryPageWidget(imagePaths: galleryImages),
           ],
         ),
       );
@@ -101,7 +114,9 @@ class _MainViewState extends State<MainView> {
         ),
         body: Stack(
           children: [
-            DesktopAboutPageWidget(),
+            //DesktopAboutPageWidget(),
+            GalleryPageWidget(imagePaths: galleryImages),
+
             MinimalSidebarWidget(),
           ],
         ),

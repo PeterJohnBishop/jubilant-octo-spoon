@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
 class MobileImageWithDropShadowWidget extends StatelessWidget {
-  const MobileImageWithDropShadowWidget({super.key});
+  final String imagePath;
+  const MobileImageWithDropShadowWidget({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final height = constraints.maxHeight;
         final width = constraints.maxWidth;
-        double imageWidth = (width * 0.95).clamp(300, 350);
-        double imageHeight = (height * 0.95).clamp(300, 350);
+        double imageSize = (width * 0.95).clamp(300, 350);
 
         return Center(
           child: Container(
-            width: imageWidth,
-            height: imageHeight,
+            width: imageSize,
+            height: imageSize, 
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
@@ -28,7 +27,10 @@ class MobileImageWithDropShadowWidget extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.asset('images/1.jpg', fit: BoxFit.cover),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover, 
+              ),
             ),
           ),
         );
@@ -38,21 +40,20 @@ class MobileImageWithDropShadowWidget extends StatelessWidget {
 }
 
 class DesktopImageWithDropShadowWidget extends StatelessWidget {
-  const DesktopImageWithDropShadowWidget({super.key});
+  final String imagePath;
+  const DesktopImageWithDropShadowWidget({super.key, required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final height = constraints.maxHeight;
         final width = constraints.maxWidth;
-        double imageWidth = (width * 0.95).clamp(1200, 1920);
-        double imageHeight = (height * 0.95).clamp(600, 1080);
+        double imageSize = (width * 0.95).clamp(400, 600);
 
         return Center(
           child: Container(
-            width: imageWidth,
-            height: imageHeight,
+            width: imageSize,
+            height: imageSize, 
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
@@ -65,7 +66,10 @@ class DesktopImageWithDropShadowWidget extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.asset('images/2.jpg', fit: BoxFit.cover),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover, 
+              ),
             ),
           ),
         );

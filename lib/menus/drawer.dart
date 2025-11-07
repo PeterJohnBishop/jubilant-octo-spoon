@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/menus/sidebar.dart';
 
-class StandardDrawer extends StatefulWidget {
-  const StandardDrawer({super.key});
+class MobileDrawer extends StatefulWidget {
+  const MobileDrawer({super.key});
 
   @override
-  State<StandardDrawer> createState() => _StandardDrawerState();
+  State<MobileDrawer> createState() => _MobileDrawerState();
 }
 
-class _StandardDrawerState extends State<StandardDrawer> {
+class _MobileDrawerState extends State<MobileDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
