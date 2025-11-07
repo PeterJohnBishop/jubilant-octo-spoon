@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/content/image.dart';
+import 'package:jubilant_octo_spoon/actions/nav-text.dart';
+import 'package:jubilant_octo_spoon/content/about.dart';
+import 'package:jubilant_octo_spoon/menus/drawer.dart';
+import 'package:jubilant_octo_spoon/menus/sidebar.dart';
+import 'package:jubilant_octo_spoon/views/AboutPageWidget.dart';
+import 'package:jubilant_octo_spoon/visuals/CircularImageWithDropShadowWidget.dart';
+import 'package:jubilant_octo_spoon/visuals/ImageWithDropShadowWidget.dart';
 import 'package:jubilant_octo_spoon/forms/email.dart';
 
 void main() {
@@ -34,23 +40,71 @@ class _MainViewState extends State<MainView> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.sizeOf(context);
-    if (size.width < 900) {
-      return const Scaffold(
+    if (size.width < 1300) {
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text('PETER J BISHOP'),
+          leading: Builder(
+            builder: (context) {
+              return IconButton(
+                icon: const Icon(Icons.menu),
+                onPressed: () {
+                  Scaffold.of(context).openDrawer();
+                },
+              );
+            },
+          ),
+        ),
+        drawer: StandardDrawer(),
         body: Stack(
           children: [
-            MobileImageWithDropShadowWidget(),
-            EmailForm()
+            MobileAboutPageWidget()
           ],
         ),
       );
     } else {
-      return const Scaffold(
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text('PETER J BISHOP'),
+          actions: [
+            NavTextButton(label: 'home', isSelected: false, onPressed: () {}),
+            SizedBox(width: 20),
+            NavTextButton(label: 'about', isSelected: false, onPressed: () {}),
+            SizedBox(width: 20),
+            NavTextButton(
+              label: 'projects',
+              isSelected: false,
+              onPressed: () {},
+            ),
+            SizedBox(width: 20),
+            NavTextButton(label: 'news', isSelected: false, onPressed: () {}),
+            SizedBox(width: 20),
+            NavTextButton(
+              label: 'gallery',
+              isSelected: false,
+
+              onPressed: () {},
+            ),
+            SizedBox(width: 20),
+
+            NavTextButton(
+              label: 'contact',
+              isSelected: false,
+              onPressed: () {},
+            ),
+            SizedBox(width: 20),
+          ],
+        ),
         body: Stack(
           children: [
-            DesktopImageWithDropShadowWidget(),
-            EmailForm()
-          ]
-        ) 
+            DesktopAboutPageWidget(),
+            MinimalSidebarWidget(),
+          ],
+        ),
       );
     }
   }

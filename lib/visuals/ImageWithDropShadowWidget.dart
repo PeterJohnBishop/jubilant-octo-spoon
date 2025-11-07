@@ -9,8 +9,8 @@ class MobileImageWithDropShadowWidget extends StatelessWidget {
       builder: (context, constraints) {
         final height = constraints.maxHeight;
         final width = constraints.maxWidth;
-        double imageWidth = (width * 0.95).clamp(300, 850);
-        double imageHeight = (height * 0.95).clamp(300, 850);
+        double imageWidth = (width * 0.95).clamp(300, 350);
+        double imageHeight = (height * 0.95).clamp(300, 350);
 
         return Center(
           child: Container(

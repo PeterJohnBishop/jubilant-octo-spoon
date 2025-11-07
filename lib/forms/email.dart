@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/actions/submit-email.dart';
-import 'package:jubilant_octo_spoon/actions/submit.dart';
 
 class ContactView extends StatefulWidget {
   const ContactView({super.key});
