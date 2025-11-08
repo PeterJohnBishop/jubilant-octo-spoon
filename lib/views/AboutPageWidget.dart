@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../content/about.dart';
+import '../content/AboutTextWidget.dart';
 import '../visuals/CircularImageWithDropShadowWidget.dart';
 
 class DesktopAboutPageWidget extends StatelessWidget {
