@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/menus/sidebar.dart';
 
 class MobileDrawer extends StatefulWidget {
-  const MobileDrawer({super.key});
+  final Function(int) onItemSelected;
+  const MobileDrawer({super.key, required this.onItemSelected});
 
   @override
   State<MobileDrawer> createState() => _MobileDrawerState();
 }
 
 class _MobileDrawerState extends State<MobileDrawer> {
+  late Function(int) onSelected = widget.onItemSelected; 
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -45,48 +48,42 @@ class _MobileDrawerState extends State<MobileDrawer> {
           ListTile(
             title: const Text('home'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              onSelected(0);
               Navigator.pop(context);
             },
           ),
           ListTile(
             title: const Text('about'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+             onSelected(1);
               Navigator.pop(context);
             },
           ),
           ListTile(
             title: const Text('projects'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              onSelected(2);
               Navigator.pop(context);
             },
           ),
           ListTile(
             title: const Text('news'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              onSelected(3);
               Navigator.pop(context);
             },
           ),
           ListTile(
             title: const Text('gallery'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              onSelected(4);
               Navigator.pop(context);
             },
           ),
           ListTile(
             title: const Text('contact'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              onSelected(5);
               Navigator.pop(context);
             },
           ),

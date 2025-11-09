@@ -59,11 +59,24 @@ class _MainViewState extends State<MainView> {
             },
           ),
         ),
-        drawer: MobileDrawer(),
+        drawer: MobileDrawer(
+          onItemSelected: (int index) {
+            setState(() {
+              selectedIndex = index;
+            });
+          },
+        ),
         body: Stack(
           children: [
-            // MobileAboutPageWidget()
-            Center(child: VerticalCarousel(images: GlobalData.assetImages)),
+                  switch (selectedIndex) {
+              0 => GlobalData.mobileHome,
+              1 => GlobalData.mobileAbout,
+              2 => GlobalData.mobileProjects,
+              3 => GlobalData.mobileNews,
+              4 => GlobalData.mobileGallery,
+              5 => GlobalData.mobileContact,
+              _ => GlobalData.mobileHome,
+            },
           ],
         ),
       );

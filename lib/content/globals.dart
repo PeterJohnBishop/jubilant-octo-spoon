@@ -57,6 +57,13 @@ class GlobalData {
     ),
   );
 
+    static Widget mobileHome = Center(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Text("Home Page Under Construction")],
+    ),
+  );
+
   static Widget desktopAbout = Center(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -67,8 +74,28 @@ class GlobalData {
     ),
   );
 
+    static Widget mobileAbout = Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        MobileCircularImageWithDropShadowWidget(),
+        MobileAboutTextWidget(),
+      ],
+    ),
+  );
+
   static Widget desktopProjects = Center(
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        VerticalCarousel(images: GlobalData.projectDescriptions[0].imageAssets),
+        Descriptiontextwidget(data: GlobalData.projectDescriptions[0]),
+      ],
+    ),
+  );
+
+    static Widget mobileProjects = Center(
+    child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         VerticalCarousel(images: GlobalData.projectDescriptions[0].imageAssets),
@@ -84,6 +111,13 @@ class GlobalData {
     ),
   );
 
+static Widget mobileNews = Center(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Text("News Page Under Construction")],
+    ),
+  );
+
   static Widget desktopGallery = Center(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +125,21 @@ class GlobalData {
     ),
   );
 
+  static Widget mobileGallery = Center(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Text("Gallery Under Construction")],
+    ),
+  );
+
   static Widget desktopContact = Center(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Text("Contact Page Under Construction")],
+    ),
+  );
+
+    static Widget mobileContact = Center(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [Text("Contact Page Under Construction")],
