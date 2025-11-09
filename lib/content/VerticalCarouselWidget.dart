@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/visuals/ImageSlideWidget.dart';
-import 'package:jubilant_octo_spoon/visuals/ImageWithDropShadowWidget.dart';
 
 class VerticalCarousel extends StatefulWidget {
   final List<String> images;

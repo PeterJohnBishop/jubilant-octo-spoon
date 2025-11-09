@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class NavTextButton extends StatefulWidget {
+  final int index;
   final String label;
   final bool isSelected;
   final VoidCallback onPressed;
 
   const NavTextButton({
     super.key,
+    required this.index,
     required this.label,
     required this.isSelected,
     required this.onPressed,
