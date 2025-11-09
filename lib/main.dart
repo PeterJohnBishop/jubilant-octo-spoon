@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/actions/nav-text.dart';
+import 'package:jubilant_octo_spoon/content/VerticalCarouselWidget.dart';
+import 'package:jubilant_octo_spoon/content/globals.dart';
 import 'package:jubilant_octo_spoon/menus/drawer.dart';
 import 'package:jubilant_octo_spoon/menus/sidebar.dart';
 import 'package:jubilant_octo_spoon/views/AboutPageWidget.dart';
@@ -55,7 +57,12 @@ class _MainViewState extends State<MainView> {
           ),
         ),
         drawer: MobileDrawer(),
-        body: Stack(children: [MobileAboutPageWidget()]),
+        body: Stack(children: [
+          // MobileAboutPageWidget()
+          Center(
+              child: VerticalCarousel(images: GlobalData.assetImages),
+            ),
+          ]),
       );
     } else {
       return Scaffold(
@@ -100,7 +107,13 @@ class _MainViewState extends State<MainView> {
           ],
         ),
         body: Stack(
-          children: [DesktopAboutPageWidget(), MinimalSidebarWidget()],
+          children: [
+            // DesktopAboutPageWidget(),
+            Center(
+              child: VerticalCarousel(images: GlobalData.assetImages),
+            ),
+             
+            MinimalSidebarWidget()],
         ),
       );
     }

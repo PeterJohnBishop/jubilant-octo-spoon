@@ -66,9 +66,11 @@ class DesktopImageWithDropShadowWidget extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.asset(
+              child: Padding(padding: EdgeInsetsGeometry.all(8),
+              child:  Image.asset(
                 imagePath,
                 fit: BoxFit.cover, 
+              ),
               ),
             ),
           ),
