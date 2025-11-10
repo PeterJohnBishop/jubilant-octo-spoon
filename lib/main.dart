@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/actions/nav-text.dart';
-import 'package:jubilant_octo_spoon/content/AboutTextWidget.dart';
-import 'package:jubilant_octo_spoon/content/DescriptionTextWidget.dart';
-import 'package:jubilant_octo_spoon/content/VerticalCarouselWidget.dart';
 import 'package:jubilant_octo_spoon/content/globals.dart';
 import 'package:jubilant_octo_spoon/menus/drawer.dart';
 import 'package:jubilant_octo_spoon/menus/sidebar.dart';
-import 'package:jubilant_octo_spoon/views/AboutPageWidget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -84,11 +84,11 @@ class _VerticalCarouselState extends State<VerticalCarousel> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Indicators on the LEFT
+                widget.images.length > 1 ?
                 Padding(
                   padding: const EdgeInsets.all(15),
                   child: _buildIndicators(),
-                ),
+                ) : SizedBox(),
 
                 // Carousel window
                 Expanded(

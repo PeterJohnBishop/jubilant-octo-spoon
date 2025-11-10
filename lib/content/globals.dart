@@ -27,6 +27,30 @@ class GlobalData {
 
   static List<DescriptionCardModel> projectDescriptions = [
     DescriptionCardModel(
+      name: "TOTP Authentication App",
+      linkText: "GitHub",
+      linkUrl: "https://github.com/PeterJohnBishop/QR-TOTP-Swiftui",
+      paragraphs: [
+        "VisionKit QR code scanner to extract the issuer, username, and secret from the image.",
+        "On scan the user is automatically redirected to the main screen and the passcode is displayed.",
+        "Once scanned the user can save this and regenerate the updated code anytime from the list. The secret and timeinterval are saved through SwiftData.",
+      ],
+      imageAssets: ["TOTP/QRTOTP.gif"],
+      logos: ["images/swift-original-wordmark.svg"],
+    ),
+    DescriptionCardModel(
+      name: "API TUI",
+      linkText: "GitHub",
+      linkUrl: "https://github.com/PeterJohnBishop/tui-api",
+      paragraphs: [
+        "A TUI built with Go and BubbleTea framework.",
+        "Using Elm architecture design pattern to implement an API request testing terminal based application with a reactive user interface.",
+        "Select a method, apply one or more headers, and request body as needed. Verify the response in a scrollable frame.",
+      ],
+      imageAssets: ["APICLI/apicli.jpeg"],
+      logos: ["images/go-logo-blue.svg"],
+    ),
+    DescriptionCardModel(
       name: "Facial Rekognition",
       linkText: "GitHub",
       linkUrl: "https://github.com/PeterJohnBishop/FacialRekognition-SwfitUI",
@@ -57,7 +81,7 @@ class GlobalData {
     ),
   );
 
-    static Widget mobileHome = Center(
+  static Widget mobileHome = Center(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [Text("Home Page Under Construction")],
@@ -74,7 +98,7 @@ class GlobalData {
     ),
   );
 
-    static Widget mobileAbout = Center(
+  static Widget mobileAbout = Center(
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -85,23 +109,47 @@ class GlobalData {
   );
 
   static Widget desktopProjects = Center(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        VerticalCarousel(images: GlobalData.projectDescriptions[0].imageAssets),
-        Descriptiontextwidget(data: GlobalData.projectDescriptions[0]),
-      ],
+    child: SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: List.generate(GlobalData.projectDescriptions.length, (index) {
+          final project = GlobalData.projectDescriptions[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
+              children: [
+                VerticalCarousel(images: project.imageAssets),
+                const SizedBox(width: 40),
+                Descriptiontextwidget(data: project),
+              ],
+            ),
+          );
+        }),
+      ),
     ),
   );
 
-    static Widget mobileProjects = Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        VerticalCarousel(images: GlobalData.projectDescriptions[0].imageAssets),
-        Descriptiontextwidget(data: GlobalData.projectDescriptions[0]),
-      ],
+  static Widget mobileProjects = Center(
+    child: SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(GlobalData.projectDescriptions.length, (index) {
+          final project = GlobalData.projectDescriptions[index];
+          return Column(
+              children: [
+                VerticalCarousel(images: project.imageAssets),
+                const SizedBox(width: 20),
+                Descriptiontextwidget(data: project),
+              ],
+            
+          );
+        }
+      ),
     ),
+  ),
   );
 
   static Widget desktopNews = Center(
@@ -111,7 +159,7 @@ class GlobalData {
     ),
   );
 
-static Widget mobileNews = Center(
+  static Widget mobileNews = Center(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [Text("News Page Under Construction")],
@@ -139,7 +187,7 @@ static Widget mobileNews = Center(
     ),
   );
 
-    static Widget mobileContact = Center(
+  static Widget mobileContact = Center(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [Text("Contact Page Under Construction")],

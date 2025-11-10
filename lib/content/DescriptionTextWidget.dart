@@ -32,7 +32,7 @@ class Descriptiontextwidget extends StatelessWidget {
                   children: [
                     Text(data.name, style: const TextStyle(fontSize: 26)),
                     const SizedBox(height: 8),
-                    HyperlinkButton(text: data.linkText, url: data.linkUrl),
+                    HyperlinkButton(label: data.linkText, url: data.linkUrl),
                     const SizedBox(height: 16),
 
                     ...data.paragraphs.map(
