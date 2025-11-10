@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/actions/nav-text.dart';
-import 'package:jubilant_octo_spoon/content/globals.dart';
+import 'package:jubilant_octo_spoon/globals.dart';
+import 'package:jubilant_octo_spoon/footers/Footer.dart';
 import 'package:jubilant_octo_spoon/menus/drawer.dart';
-import 'package:jubilant_octo_spoon/menus/sidebar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'PETER JOHN BISHOP',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
@@ -67,9 +67,8 @@ class _MainViewState extends State<MainView> {
               0 => GlobalData.mobileHome,
               1 => GlobalData.mobileAbout,
               2 => GlobalData.mobileProjects,
-              3 => GlobalData.mobileNews,
-              4 => GlobalData.mobileGallery,
-              5 => GlobalData.mobileContact,
+              3 => GlobalData.mobileBlog,
+              4 => GlobalData.Contact,
               _ => GlobalData.mobileHome,
             },
           ],
@@ -117,7 +116,7 @@ class _MainViewState extends State<MainView> {
             SizedBox(width: 20),
             NavTextButton(
               index: 3,
-              label: 'news',
+              label: 'blog',
               isSelected: selectedIndex == 3 ? true : false,
               onPressed: () {
                 setState(() {
@@ -128,22 +127,11 @@ class _MainViewState extends State<MainView> {
             SizedBox(width: 20),
             NavTextButton(
               index: 4,
-              label: 'gallery',
+              label: 'contact',
               isSelected: selectedIndex == 4 ? true : false,
               onPressed: () {
                 setState(() {
                   selectedIndex = 4;
-                });
-              },
-            ),
-            SizedBox(width: 20),
-            NavTextButton(
-              index: 5,
-              label: 'contact',
-              isSelected: selectedIndex == 5 ? true : false,
-              onPressed: () {
-                setState(() {
-                  selectedIndex = 5;
                 });
               },
             ),
@@ -156,13 +144,12 @@ class _MainViewState extends State<MainView> {
               0 => GlobalData.desktopHome,
               1 => GlobalData.desktopAbout,
               2 => GlobalData.desktopProjects,
-              3 => GlobalData.desktopNews,
-              4 => GlobalData.desktopGallery,
-              5 => GlobalData.desktopContact,
+              3 => GlobalData.mobileBlog,
+              4 => GlobalData.Contact,
               _ => GlobalData.desktopHome,
             },
 
-            MinimalSidebarWidget(),
+            Footer(),
           ],
         ),
       );

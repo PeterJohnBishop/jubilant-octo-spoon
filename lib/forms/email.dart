@@ -1,20 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/actions/submit-email.dart';
 
-class ContactView extends StatefulWidget {
-  const ContactView({super.key});
-
-  @override
-  State<ContactView> createState() => _ContactViewState();
-}
-
-class _ContactViewState extends State<ContactView> {
-  @override
-  Widget build(BuildContext context) {
-    return const EmailForm();
-  }
-}
-
 class EmailForm extends StatefulWidget {
   const EmailForm({super.key});
 
@@ -27,6 +13,7 @@ class _EmailFormState extends State<EmailForm> {
   final _emailFocus = FocusNode();
   final _subjectFocus = FocusNode();
   final _messageFocus = FocusNode();
+
   final _nameTextController = TextEditingController();
   final _emailTextController = TextEditingController();
   final _subjectTextController = TextEditingController();
@@ -80,31 +67,41 @@ class _EmailFormState extends State<EmailForm> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final height = constraints.maxHeight;
         final width = constraints.maxWidth;
-        double formWidth = (width * 0.95).clamp(1200, 1920);
-        double formHeight = (height * 0.95).clamp(600, 1080);
+
+        double formWidth;
+        EdgeInsets padding;
+
+        if (width < 600) {
+          formWidth = width * 0.9; // mobile
+          padding = const EdgeInsets.all(16);
+        } else if (width < 1100) {
+          formWidth = width * 0.7; // tablet
+          padding = const EdgeInsets.all(24);
+        } else {
+          formWidth = width * 0.5; // desktop
+          padding = const EdgeInsets.all(10);
+        }
 
         return Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth: formWidth,
-              maxHeight: formHeight,
-            ),
-            child: Center(
+          child: SizedBox(
+            width: formWidth,
+            child: SingleChildScrollView(
               child: Container(
-                padding: const EdgeInsets.all(24),
+                padding: padding,
                 color: Colors.transparent,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const Text(
                       "Contact Me",
                       style: TextStyle(color: Colors.white, fontSize: 22),
+                      textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 24),
 
-                    // Name Field
+                    // Name
                     Container(
                       decoration: shadow,
                       child: TextField(
@@ -112,14 +109,14 @@ class _EmailFormState extends State<EmailForm> {
                         controller: _nameTextController,
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
-                        decoration: _nameTextController.text != ""
+                        decoration: _nameTextController.text.isNotEmpty
                             ? inputDecoration('', _nameFocus.hasFocus)
                             : inputDecoration('Name', _nameFocus.hasFocus),
                       ),
                     ),
                     const SizedBox(height: 16),
 
-                    // Email Field
+                    // Email
                     Container(
                       decoration: shadow,
                       child: TextFormField(
@@ -128,7 +125,7 @@ class _EmailFormState extends State<EmailForm> {
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
                         keyboardType: TextInputType.emailAddress,
-                        decoration: _emailTextController.text != ""
+                        decoration: _emailTextController.text.isNotEmpty
                             ? inputDecoration('', _emailFocus.hasFocus)
                             : inputDecoration('Email', _emailFocus.hasFocus),
                         autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -136,9 +133,8 @@ class _EmailFormState extends State<EmailForm> {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your email';
                           }
-                          final emailRegex = RegExp(
-                            r'^[^@\s]+@[^@\s]+\.[^@\s]+$',
-                          );
+                          final emailRegex =
+                              RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
                           if (!emailRegex.hasMatch(value)) {
                             return 'Please enter a valid email address';
                           }
@@ -148,7 +144,7 @@ class _EmailFormState extends State<EmailForm> {
                     ),
                     const SizedBox(height: 16),
 
-                    // Subject Field
+                    // Subject
                     Container(
                       decoration: shadow,
                       child: TextField(
@@ -156,17 +152,14 @@ class _EmailFormState extends State<EmailForm> {
                         controller: _subjectTextController,
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
-                        decoration: _subjectTextController.text != ''
+                        decoration: _subjectTextController.text.isNotEmpty
                             ? inputDecoration('', _subjectFocus.hasFocus)
-                            : inputDecoration(
-                                'Subject',
-                                _subjectFocus.hasFocus,
-                              ),
+                            : inputDecoration('Subject', _subjectFocus.hasFocus),
                       ),
                     ),
                     const SizedBox(height: 16),
 
-                    // Message Field
+                    // Message
                     Container(
                       decoration: shadow,
                       child: TextField(
@@ -175,15 +168,13 @@ class _EmailFormState extends State<EmailForm> {
                         cursorColor: Colors.black,
                         style: const TextStyle(color: Colors.black),
                         maxLines: 10,
-                        decoration: _messageTextController.text != ''
+                        decoration: _messageTextController.text.isNotEmpty
                             ? inputDecoration('', _messageFocus.hasFocus)
-                            : inputDecoration(
-                                'Message',
-                                _messageFocus.hasFocus,
-                              ),
+                            : inputDecoration('Message', _messageFocus.hasFocus),
                       ),
                     ),
                     const SizedBox(height: 24),
+
                     SubmitEmailButton(
                       name: _nameTextController.text,
                       email: _emailTextController.text,

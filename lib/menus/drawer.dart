@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/menus/sidebar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MobileDrawer extends StatefulWidget {
   final Function(int) onItemSelected;
@@ -10,7 +10,16 @@ class MobileDrawer extends StatefulWidget {
 }
 
 class _MobileDrawerState extends State<MobileDrawer> {
-  late Function(int) onSelected = widget.onItemSelected; 
+  late Function(int) onSelected = widget.onItemSelected;
+
+  Future<void> _launchURL(String url) async {
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      debugPrint('Could not launch $url');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +37,24 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    IconButton(onPressed: () {}, icon: Icon(Icons.phone)),
+                    IconButton(
+                      onPressed: () {
+                        _launchURL('tel:+17202725223');
+                      },
+                      icon: Icon(Icons.phone),
+                    ),
                     Text('+1 720 272 5223', style: TextStyle(fontSize: 14)),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    IconButton(onPressed: () {}, icon: Icon(Icons.email)),
+                    IconButton(
+                      onPressed: () {
+                        _launchURL('mailto:peterjbishop.denver@gmail.com');
+                      },
+                      icon: Icon(Icons.email),
+                    ),
                     Text(
                       'peterjbishop.denver@gmail.com',
                       style: TextStyle(fontSize: 14),
@@ -55,7 +74,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
           ListTile(
             title: const Text('about'),
             onTap: () {
-             onSelected(1);
+              onSelected(1);
               Navigator.pop(context);
             },
           ),
@@ -66,20 +85,20 @@ class _MobileDrawerState extends State<MobileDrawer> {
               Navigator.pop(context);
             },
           ),
-          ListTile(
-            title: const Text('news'),
-            onTap: () {
-              onSelected(3);
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('gallery'),
-            onTap: () {
-              onSelected(4);
-              Navigator.pop(context);
-            },
-          ),
+          // ListTile(
+          //   title: const Text('news'),
+          //   onTap: () {
+          //     onSelected(3);
+          //     Navigator.pop(context);
+          //   },
+          // ),
+          // ListTile(
+          //   title: const Text('gallery'),
+          //   onTap: () {
+          //     onSelected(4);
+          //     Navigator.pop(context);
+          //   },
+          // ),
           ListTile(
             title: const Text('contact'),
             onTap: () {

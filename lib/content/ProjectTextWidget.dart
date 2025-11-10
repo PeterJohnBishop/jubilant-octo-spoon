@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/actions/HyperlinkButton.dart';
-import 'package:jubilant_octo_spoon/content/globals.dart';
+import 'package:jubilant_octo_spoon/globals.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
-class Descriptiontextwidget extends StatelessWidget {
-  final DescriptionCardModel data;
+class Projecttextwidget extends StatelessWidget {
+  final ProjectCardModel data;
 
-  const Descriptiontextwidget({Key? key, required this.data}) : super(key: key);
+  const Projecttextwidget({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

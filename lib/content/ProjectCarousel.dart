@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/visuals/ImageSlideWidget.dart';
 
-class VerticalCarousel extends StatefulWidget {
+class ProjectCarousel extends StatefulWidget {
   final List<String> images;
   final double indicatorSize;
   final double indicatorSpacing;
@@ -9,7 +9,7 @@ class VerticalCarousel extends StatefulWidget {
   final Color inactiveIndicatorColor;
   final EdgeInsetsGeometry? padding;
 
-  const VerticalCarousel({
+  const ProjectCarousel({
     Key? key,
     required this.images,
     this.indicatorSize = 10.0,
@@ -20,10 +20,10 @@ class VerticalCarousel extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _VerticalCarouselState createState() => _VerticalCarouselState();
+  _ProjectCarouselState createState() => _ProjectCarouselState();
 }
 
-class _VerticalCarouselState extends State<VerticalCarousel> {
+class _ProjectCarouselState extends State<ProjectCarousel> {
   late final PageController _pageController;
   int _currentIndex = 0;
 

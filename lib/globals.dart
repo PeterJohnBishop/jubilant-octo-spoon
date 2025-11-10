@@ -1,10 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:jubilant_octo_spoon/content/AboutTextWidget.dart';
-import 'package:jubilant_octo_spoon/content/DescriptionTextWidget.dart';
-import 'package:jubilant_octo_spoon/content/VerticalCarouselWidget.dart';
+import 'package:jubilant_octo_spoon/content/HomeTextWidget.dart';
+import 'package:jubilant_octo_spoon/content/ProjectTextWidget.dart';
+import 'package:jubilant_octo_spoon/content/ProjectCarousel.dart';
+import 'package:jubilant_octo_spoon/forms/email.dart';
 import 'package:jubilant_octo_spoon/visuals/CircularImageWithDropShadowWidget.dart';
 
-class DescriptionCardModel {
+class ProjectCardModel {
   final String name;
   final String linkText;
   final String linkUrl;
@@ -12,7 +14,7 @@ class DescriptionCardModel {
   final List<String> imageAssets;
   final List<String> logos;
 
-  const DescriptionCardModel({
+  const ProjectCardModel({
     required this.name,
     required this.linkText,
     required this.linkUrl,
@@ -23,10 +25,9 @@ class DescriptionCardModel {
 }
 
 class GlobalData {
-  static List<String> assetImages = ["images/apiResp.gif", "images/combo.gif"];
 
-  static List<DescriptionCardModel> projectDescriptions = [
-    DescriptionCardModel(
+  static List<ProjectCardModel> projectDescriptions = [
+    ProjectCardModel(
       name: "TOTP Authentication App",
       linkText: "GitHub",
       linkUrl: "https://github.com/PeterJohnBishop/QR-TOTP-Swiftui",
@@ -38,7 +39,7 @@ class GlobalData {
       imageAssets: ["TOTP/QRTOTP.gif"],
       logos: ["images/swift-original-wordmark.svg"],
     ),
-    DescriptionCardModel(
+    ProjectCardModel(
       name: "API TUI",
       linkText: "GitHub",
       linkUrl: "https://github.com/PeterJohnBishop/tui-api",
@@ -50,7 +51,7 @@ class GlobalData {
       imageAssets: ["APICLI/apicli.jpeg"],
       logos: ["images/go-logo-blue.svg"],
     ),
-    DescriptionCardModel(
+    ProjectCardModel(
       name: "Facial Rekognition",
       linkText: "GitHub",
       linkUrl: "https://github.com/PeterJohnBishop/FacialRekognition-SwfitUI",
@@ -77,14 +78,20 @@ class GlobalData {
   static Widget desktopHome = Center(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text("Home Page Under Construction")],
+      children: [
+        DesktopCircularImageWithDropShadowWidget(),
+        DesktopHomeTextWidget(),
+      ],
     ),
   );
 
   static Widget mobileHome = Center(
-    child: Row(
+    child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text("Home Page Under Construction")],
+      children: [
+        MobileCircularImageWithDropShadowWidget(),
+        MobileHomeTextWidget(),
+      ],
     ),
   );
 
@@ -92,8 +99,7 @@ class GlobalData {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        DesktopCircularImageWithDropShadowWidget(),
-        DesktopAboutTextWidget(),
+        Text("About Page Under Construction")
       ],
     ),
   );
@@ -102,8 +108,7 @@ class GlobalData {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        MobileCircularImageWithDropShadowWidget(),
-        MobileAboutTextWidget(),
+         Text("About Page Under Construction")
       ],
     ),
   );
@@ -121,9 +126,9 @@ class GlobalData {
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Row(
               children: [
-                VerticalCarousel(images: project.imageAssets),
+                ProjectCarousel(images: project.imageAssets),
                 const SizedBox(width: 40),
-                Descriptiontextwidget(data: project),
+                Projecttextwidget(data: project),
               ],
             ),
           );
@@ -140,9 +145,9 @@ class GlobalData {
           final project = GlobalData.projectDescriptions[index];
           return Column(
               children: [
-                VerticalCarousel(images: project.imageAssets),
+                ProjectCarousel(images: project.imageAssets),
                 const SizedBox(width: 20),
-                Descriptiontextwidget(data: project),
+                Projecttextwidget(data: project),
               ],
             
           );
@@ -152,45 +157,39 @@ class GlobalData {
   ),
   );
 
-  static Widget desktopNews = Center(
+  static Widget desktopBlog = Center(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text("News Page Under Construction")],
+      children: [Text("Blog Under Construction")],
     ),
   );
 
-  static Widget mobileNews = Center(
+  static Widget mobileBlog = Center(
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text("News Page Under Construction")],
+      children: [Text("Blog Under Construction")],
     ),
   );
 
-  static Widget desktopGallery = Center(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text("Gallery Under Construction")],
-    ),
-  );
+  static Widget Contact = LayoutBuilder(
+  builder: (context, constraints) {
+    return Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: 1600,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Contact Me", style: TextStyle(
+              fontSize: 24
+            ),),
+            EmailForm()
+          ],
+        )
+      ),
+    );
+  },
+);
 
-  static Widget mobileGallery = Center(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text("Gallery Under Construction")],
-    ),
-  );
-
-  static Widget desktopContact = Center(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text("Contact Page Under Construction")],
-    ),
-  );
-
-  static Widget mobileContact = Center(
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text("Contact Page Under Construction")],
-    ),
-  );
 }

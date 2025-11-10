@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class DesktopAboutTextWidget extends StatelessWidget {
-  const DesktopAboutTextWidget({super.key});
+class DesktopHomeTextWidget extends StatelessWidget {
+  const DesktopHomeTextWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +38,8 @@ class DesktopAboutTextWidget extends StatelessWidget {
   }
 }
 
-class MobileAboutTextWidget extends StatelessWidget {
-  const MobileAboutTextWidget({super.key});
+class MobileHomeTextWidget extends StatelessWidget {
+  const MobileHomeTextWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -38,7 +38,7 @@ class _HoverIconButtonState extends State<HoverIconButton> {
             children: [
               Icon(
                 widget.icon,
-                color: Colors.black87,
+                color:  _isHovered ? Colors.black87 : Colors.grey,
               ),
               AnimatedSize(
                 duration: const Duration(milliseconds: 200),
