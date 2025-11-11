@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/site/mainScaffold.dart';
+import 'package:jubilant_octo_spoon/site/MainScaffold.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jubilant_octo_spoon/site/HoverIconButton.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../actions/hover-icon.dart';
-
-class footer extends StatelessWidget {
-  const footer({super.key});
+class Footer extends StatelessWidget {
+  const Footer({super.key});
 
   // Helper function to launch URLs safely
   Future<void> _launchURL(String url) async {

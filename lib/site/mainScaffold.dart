@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/site/drawer.dart';
+import 'package:jubilant_octo_spoon/site/MainDrawer.dart';
 
-import 'footer.dart';
+import 'Footer.dart';
 import 'navTextButton.dart';
 
 class MainScaffold extends StatefulWidget {
@@ -20,6 +20,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     "blog",
     "contact",
   ];
+
   Widget getSelectedPage() {
     switch (selectedIndex) {
       case 0:
@@ -33,7 +34,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       case 4:
         return const Center(child: Text("Contact Page"));
       default:
-        return const Center(child: Text("Unknown Page"));
+        return const Center(child: Text("Oops! How'd you get here?!"));
     }
   }
 
@@ -59,7 +60,7 @@ class _MainScaffoldState extends State<MainScaffold> {
             children: List.generate(pages.length, (index) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: navTextButton(
+                child: NavTextButton(
                   index: index,
                   label: pages[index],
                   isSelected: selectedIndex == index,
@@ -85,7 +86,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       body: Stack(
         children: [
           getSelectedPage(),
-          Align(alignment: Alignment.bottomCenter, child: footer()),
+          Align(alignment: Alignment.bottomCenter, child: Footer()),
         ],
       ),
     );
