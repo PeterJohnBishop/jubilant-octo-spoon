@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class NavTextButton extends StatefulWidget {
+class navTextButton extends StatefulWidget {
   final int index;
   final String label;
   final bool isSelected;
   final VoidCallback onPressed;
 
-  const NavTextButton({
+  const navTextButton({
     super.key,
     required this.index,
     required this.label,
@@ -15,10 +15,10 @@ class NavTextButton extends StatefulWidget {
   });
 
   @override
-  State<NavTextButton> createState() => _NavTextButtonState();
+  State<navTextButton> createState() => _navTextButtonState();
 }
 
-class _NavTextButtonState extends State<NavTextButton> {
+class _navTextButtonState extends State<navTextButton> {
   bool _isHovered = false;
   bool _isPressed = false;
 

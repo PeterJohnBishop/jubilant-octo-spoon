@@ -3,8 +3,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../actions/hover-icon.dart';
 
-class Footer extends StatelessWidget {
-  const Footer({super.key});
+class footer extends StatelessWidget {
+  const footer({super.key});
 
   // Helper function to launch URLs safely
   Future<void> _launchURL(String url) async {
