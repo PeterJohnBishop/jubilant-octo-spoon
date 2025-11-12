@@ -73,7 +73,6 @@ class _ProjectCarouselState extends State<ProjectCarousel> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final width = constraints.maxWidth;
-
         final double containerSize = (width * 0.95).clamp(380, 580);
 
         return SizedBox(

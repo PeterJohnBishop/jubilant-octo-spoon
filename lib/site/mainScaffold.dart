@@ -13,13 +13,7 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   int selectedIndex = 0;
-  List<String> pages = [
-    "home",
-    "projects",
-    "about",
-    "blog",
-    "contact",
-  ];
+  List<String> pages = ["home", "projects", "about", "blog", "contact"];
 
   Widget getSelectedPage() {
     switch (selectedIndex) {
@@ -40,55 +34,65 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: const Text('PETER J BISHOP'),
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-            );
-          },
-        ),
-        actions: [
-          Row(
-            children: List.generate(pages.length, (index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: NavTextButton(
-                  index: index,
-                  label: pages[index],
-                  isSelected: selectedIndex == index,
-                  onPressed: () {
-                    setState(() {
-                      selectedIndex = index;
-                    });
-                  },
-                ),
-              );
-            }),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        final height = constraints.maxHeight;
+        final double containerWidth = (width * 0.95).clamp(300, 1200);
+        final double containerHeight = (height * 0.95).clamp(350, 1440);
+
+        return Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            automaticallyImplyLeading: containerWidth < 600,
+            backgroundColor: Colors.white,
+            title: const Text('PETER J BISHOP'),
+            leading: containerWidth < 600
+                ? Builder(
+                    builder: (context) {
+                      return IconButton(
+                        icon: const Icon(Icons.menu),
+                        onPressed: () {
+                          Scaffold.of(context).openDrawer();
+                        },
+                      );
+                    },
+                  )
+                : null,
+            actions: containerWidth > 600
+                ? List.generate(pages.length, (index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: NavTextButton(
+                        index: index,
+                        label: pages[index],
+                        isSelected: selectedIndex == index,
+                        onPressed: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                      ),
+                    );
+                  })
+                : [],
           ),
-        ],
-      ),
-      drawer: MainDrawer(
-        pages: pages,
-        onItemSelected: (int index) {
-          setState(() {
-            selectedIndex = index;
-          });
-        },
-      ),
-      body: Stack(
-        children: [
-          getSelectedPage(),
-          Align(alignment: Alignment.bottomCenter, child: Footer()),
-        ],
-      ),
+          drawer: MainDrawer(
+            pages: pages,
+            onItemSelected: (int index) {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+          ),
+          body: Stack(
+            children: [
+              getSelectedPage(),
+              containerWidth < 600 ? Container() : Align(alignment: Alignment.bottomCenter, child: Footer()),
+            ],
+          ),
+        );
+      },
     );
   }
 }
