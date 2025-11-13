@@ -1,12 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/actions/HyperlinkButton.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:jubilant_octo_spoon/globals.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class AboutTextWidget extends StatelessWidget {
+import '../HyperlinkButton.dart';
+
+class AboutView extends StatelessWidget {
+  const AboutView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+    child: SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: List.generate(GlobalData.companyDescriptions.length, (index) {
+          final company = GlobalData.companyDescriptions[index];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Experience(data: company),
+              ],
+            ),
+          );
+        }),
+      ),
+    ),
+  );
+  }
+}
+
+class Experience extends StatelessWidget {
   final CompanyModel data;
 
-  const AboutTextWidget({Key? key, required this.data}) : super(key: key);
+  const Experience({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/actions/HyperlinkButton.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/HyperlinkButton.dart';
 import 'package:jubilant_octo_spoon/globals.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -16,7 +16,7 @@ class Projecttextwidget extends StatelessWidget {
         final height = constraints.maxHeight;
         final width = constraints.maxWidth;
         double deskWidth = (width * 0.95).clamp(300, 350);
-        double deskHeigh = (height * 0.95).clamp(300, 850);
+        double deskHeight = (height * 0.95).clamp(300, 850);
 
         return Padding(
           padding: const EdgeInsets.all(20),

@@ -1,32 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/site/MainDrawer.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/MainDrawer.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/forms/email.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/views/AboutView.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/views/HomeView.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/views/ProjectsView.dart';
 
 import 'Footer.dart';
-import 'navTextButton.dart';
+import '../PeterJohnBishop/navTextButton.dart';
 
-class MainScaffold extends StatefulWidget {
-  const MainScaffold({super.key});
+class PeterJohnBishop extends StatefulWidget {
+  const PeterJohnBishop({super.key});
 
   @override
-  State<MainScaffold> createState() => _MainScaffoldState();
+  State<PeterJohnBishop> createState() => _PeterJohnBishopState();
 }
 
-class _MainScaffoldState extends State<MainScaffold> {
+class _PeterJohnBishopState extends State<PeterJohnBishop> {
   int selectedIndex = 0;
   List<String> pages = ["home", "projects", "about", "blog", "contact"];
 
   Widget getSelectedPage() {
     switch (selectedIndex) {
       case 0:
-        return const Center(child: Text("Home Page"));
+        return Center(child: HomeView());
       case 1:
-        return const Center(child: Text("Projects Page"));
+        return ProjectView();
       case 2:
-        return const Center(child: Text("About Page"));
+        return AboutView();
       case 3:
         return const Center(child: Text("Blog Page"));
       case 4:
-        return const Center(child: Text("Contact Page"));
+        return EmailForm();
       default:
         return const Center(child: Text("Oops! How'd you get here?!"));
     }
@@ -40,15 +44,16 @@ class _MainScaffoldState extends State<MainScaffold> {
         final height = constraints.maxHeight;
         final double containerWidth = (width * 0.95).clamp(300, 1200);
         final double containerHeight = (height * 0.95).clamp(350, 1440);
+        final bool isWide = width > height;
 
         return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
-            automaticallyImplyLeading: containerWidth < 600,
+            automaticallyImplyLeading: width < 600,
             backgroundColor: Colors.white,
             title: const Text('PETER J BISHOP'),
-            leading: containerWidth < 600
-                ? Builder(
+            leading: isWide ? null :
+                Builder(
                     builder: (context) {
                       return IconButton(
                         icon: const Icon(Icons.menu),
@@ -57,9 +62,8 @@ class _MainScaffoldState extends State<MainScaffold> {
                         },
                       );
                     },
-                  )
-                : null,
-            actions: containerWidth > 600
+                  ),
+            actions: isWide
                 ? List.generate(pages.length, (index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -88,7 +92,7 @@ class _MainScaffoldState extends State<MainScaffold> {
           body: Stack(
             children: [
               getSelectedPage(),
-              containerWidth < 600 ? Container() : Align(alignment: Alignment.bottomCenter, child: Footer()),
+              isWide ? Align(alignment: Alignment.bottomCenter, child: Footer()) : Container(),
             ],
           ),
         );
@@ -96,3 +100,5 @@ class _MainScaffoldState extends State<MainScaffold> {
     );
   }
 }
+
+

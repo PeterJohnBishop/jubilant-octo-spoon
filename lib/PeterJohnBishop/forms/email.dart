@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/actions/submit-email.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/forms/submit-email.dart';
 
 class EmailForm extends StatefulWidget {
   const EmailForm({super.key});

@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class SubmitEmailButton extends StatefulWidget {
   final String name;
@@ -25,6 +27,43 @@ class _SubmitEmailButtonState extends State<SubmitEmailButton> {
   late String subject;
   late String message;
 
+  String responseMessage = '';
+
+  Future<void> sendEmail() async {
+    const url = 'https://example.com/api/data'; 
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({
+      'name': name, 
+      'email': email, 
+      'subject': subject, 
+      'message': message
+    });
+
+    try {
+      final response = await http.post(
+        Uri.parse(url),
+        headers: headers,
+        body: body,
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        setState(() {
+          responseMessage = "Success: ${responseData['message'] ?? 'OK'}";
+        });
+      } else {
+        setState(() {
+          responseMessage = "Error: ${response.statusCode}";
+        });
+      }
+    } catch (e) {
+      setState(() {
+        responseMessage = "Exception: $e";
+      });
+    }
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -49,8 +88,7 @@ class _SubmitEmailButtonState extends State<SubmitEmailButton> {
           ),
         ),
         onPressed: () {
-          // Handle the submission logic using
-          // name, email, subject, and message variables.
+          sendEmail();
         },
         child: Text("Submit"),
       ),

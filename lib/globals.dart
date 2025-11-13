@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:jubilant_octo_spoon/content/AboutTextWidget.dart';
 import 'package:jubilant_octo_spoon/content/HomeTextWidget.dart';
-import 'package:jubilant_octo_spoon/content/ProjectTextWidget.dart';
-import 'package:jubilant_octo_spoon/content/ProjectCarousel.dart';
-import 'package:jubilant_octo_spoon/forms/email.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/ProjectTextWidget.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/ProjectCarousel.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/forms/email.dart';
 import 'package:jubilant_octo_spoon/visuals/CircularImageWithDropShadowWidget.dart';
 
 class ProjectCardModel {
@@ -156,7 +155,6 @@ class GlobalData {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AboutTextWidget(data: company),
               ],
             ),
           );

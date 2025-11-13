@@ -1,16 +1,25 @@
 # jubilant_octo_spoon
 
-A new Flutter project.
+A flutter playground for building multiple websites.
 
-## Getting Started
+# pre-requisit accounts
+- AWS
+- Google
+- Resend
+- Heroku
+- Netlify
 
-This project is a starting point for a Flutter application.
+# backend services
 
-A few resources to get you started if this is your first Flutter project:
+- basic email
+- email templates
+- user account management 
+- cloud storage for content 
+- payment and invoicing 
+- TOTP authentication 
+- QR code generation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# frontend services
+- mapping and directions 
+- digital business cards
+- mobile app
