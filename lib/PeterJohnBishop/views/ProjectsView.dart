@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jubilant_octo_spoon/PeterJohnBishop/ProjectCarousel.dart';
 import 'package:jubilant_octo_spoon/PeterJohnBishop/ProjectTextWidget.dart';
-import 'package:jubilant_octo_spoon/globals.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/globals.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({super.key});

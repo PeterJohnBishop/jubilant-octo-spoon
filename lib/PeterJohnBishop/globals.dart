@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:jubilant_octo_spoon/content/HomeTextWidget.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/HomeTextWidget.dart';
 import 'package:jubilant_octo_spoon/PeterJohnBishop/ProjectTextWidget.dart';
 import 'package:jubilant_octo_spoon/PeterJohnBishop/ProjectCarousel.dart';
 import 'package:jubilant_octo_spoon/PeterJohnBishop/forms/email.dart';
-import 'package:jubilant_octo_spoon/visuals/CircularImageWithDropShadowWidget.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/CircularImageWithDropShadowWidget.dart';
 
 class ProjectCardModel {
   final String name;

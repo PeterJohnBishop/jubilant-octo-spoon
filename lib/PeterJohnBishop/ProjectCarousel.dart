@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jubilant_octo_spoon/visuals/ImageSlideWidget.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/ImageSlideWidget.dart';
 
 class ProjectCarousel extends StatefulWidget {
   final List<String> images;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:jubilant_octo_spoon/globals.dart';
+import 'package:jubilant_octo_spoon/PeterJohnBishop/globals.dart';
 
 import '../HyperlinkButton.dart';
 
